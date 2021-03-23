@@ -39,12 +39,16 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id))
   }
 
+  // Toggle Remider
+  const toggleRemider = (id) => {
+    setTasks(tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder} : task))
+  }
 
   return (
     <div className="container">
       <Header />
       {tasks.length > 0 ? (
-      <Tasks tasks={tasks}  onDelete={deleteTask}/>)
+      <Tasks tasks={tasks}  onDelete={deleteTask} onToggle={toggleRemider} />)
       : (
         'No tasks to show at the moment'
       )
